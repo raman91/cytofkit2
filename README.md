@@ -54,7 +54,7 @@ Install this development version, use:
 if(!require(devtools)){
   install.packages("devtools") # If not already installed
 }
-devtools::install_github("JinmiaoChenLab/cytofkit2-1")
+devtools::install_github("JinmiaoChenLab/cytofkit2")
 ```
 
 ### Usage
