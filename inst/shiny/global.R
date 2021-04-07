@@ -149,6 +149,27 @@ scatterPlot <- function(obj, plotMethod, plotFunction, pointSize=1, alpha = 1,
   return(gp)
 }
 
+#FastPG for fast clustering                                           
+fastCluster <- function(
+  data, k= 30, num_threads= 1,
+  coloring= 1, minGraphSize= 1000, numColors= 16, C_thresh= 1e-6,
+  threshold= 1e-9, syncType= 0, basicOpt= 1
+) {
+  init_nms <- nmslibR::NMSlib$new( input_data= data, space= 'l2', method= 'hnsw' )
+  res <- init_nms$knn_Query_Batch( data, k= k, num_threads= num_threads )
+  ind <- res$knn_idx
+  
+  links <- FastPG::rcpp_parallel_jce(ind)
+  links <- dedup_links(links)
+  
+  FastPG::parallel_louvain(
+    links, coloring= coloring, minGraphSize= minGraphSize, numColors= numColors,
+    C_thresh= C_thresh, threshold= threshold, syncType= syncType,
+    basicOpt= basicOpt
+  )
+}
+                                           
+                                           
 ## Facet wrap plot of marker expression
 cytof_wrap_colorPlot <- function(data, xlab, ylab, markers, scaleMarker = FALSE,
                                  colorPalette = c("bluered", "spectral1", "spectral2", "heat"),
