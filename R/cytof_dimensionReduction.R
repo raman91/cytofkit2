@@ -17,7 +17,7 @@
 #' 
 #' @importFrom vegan vegdist spantree isomap
 #' @importFrom Rtsne Rtsne
-#' @@import umap
+#' @import umap
 #' @importFrom destiny DiffusionMap
 #' @importFrom utils compareVersion packageVersion
 #' @import stats reticulate
