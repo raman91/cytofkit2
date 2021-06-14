@@ -585,7 +585,7 @@ dr_panel = fluidPage(
 cluster_panel = fluidPage(
   tags$div(title="The method(s) for clustering, including \"DensVM\", \"FastPG\", \"ClusterX\", \"Rphenograph\", and \"FlowSOM\". "
            , selectInput('cluster_method', 'Cluster Method(s)'
-                         , choices = c('Rphenograph', 'ClusterX', 'DenseVM', 'FlowSOM')
+                         , choices = c('Rphenograph', 'FastPG', 'ClusterX', 'DenseVM', 'FlowSOM')
                          , multiple = T
                          , selected = c('Rphenograph'))
   )
